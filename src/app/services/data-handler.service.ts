@@ -4,6 +4,7 @@ import {Testdata} from '../data/testdata';
 import {Task} from '../model/Task';
 import validate = WebAssembly.validate;
 import {valueReferenceToExpression} from '@angular/compiler-cli/src/ngtsc/annotations/src/util';
+import {BehaviorSubject, Subject} from 'rxjs';
 
 
 
@@ -11,18 +12,23 @@ import {valueReferenceToExpression} from '@angular/compiler-cli/src/ngtsc/annota
   providedIn: 'root'
 })
 export class DataHandlerService {
+  tasksSubject = new BehaviorSubject<Task[]>(Testdata.tasks);
+  categoriesSubject =new BehaviorSubject<Category[]>(Testdata.categories);
 
   constructor() { }
 
   getcategories(): Category[]{
     return Testdata.categories;
   }
-  gettasks(): Task[]{
-    return Testdata.tasks;
+  filltasks(){
+    this.tasksSubject.next(Testdata.tasks);
   }
-  getTaskbyCategory(category:Category): Task[]{
-   const tasks = Testdata.tasks.filter((task:any)=> task.category === category);
-   return tasks;
+  fillTaskbyCategory(category:Category){
+   const tasks = Testdata.tasks.filter(task => task.category === category);
+   this.tasksSubject.next(tasks);
   }
+
+
+
 
 }
