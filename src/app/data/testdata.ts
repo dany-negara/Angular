@@ -10,6 +10,11 @@ export class Testdata{
       {id:  3,title:  "Hobby"},
       {id:  4,title:  "Action"},
       {id:  5,title:  "Relax"},
+      {id:  6,title:  "Job"},
+      {id:  7,title:  "Weekend"},
+      {id:  8,title:  "Hobby"},
+      {id:  9,title:  "Action"},
+      {id:  10,title:  "Relax"},
   ];
 
   static priority: Priority[]=[
